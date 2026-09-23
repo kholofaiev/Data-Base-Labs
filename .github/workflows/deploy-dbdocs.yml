@@ -1,0 +1,26 @@
+name: Deploy DB Documentation to dbdocs.io
+
+on:
+  push:
+    branches:
+      - main  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dbdocs CLI
+        run: npm install -g dbdocs
+
+      - name: Build and Publish to dbdocs.io
+        env:
+          DBDOCS_TOKEN: ${{ secrets.DBDOCS_TOKEN }}
+        run: |
+          dbdocs build schema.dbml --project Data-Base-Labs
