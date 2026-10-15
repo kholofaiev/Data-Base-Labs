@@ -23,4 +23,4 @@ jobs:
         env:
           DBDOCS_TOKEN: ${{ secrets.DBDOCS_TOKEN }}
         run: |
-          dbdocs build schema.dbml --project Data-Base-Labs
+          dbdocs build lab_1/schema.dbml --project Data-Base-Labs
